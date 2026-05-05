@@ -1,0 +1,8 @@
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/CvfilterApplication.java
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/config/DataSeeder.java
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/controller/ApiController.java
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/entity/Candidate.java
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/entity/Vacancy.java
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/repository/CandidateRepository.java
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/repository/VacancyRepository.java
+/Users/sahanchanuka/Desktop/Skill_Bridge-CV_Filtering_System/backend/src/main/java/com/skillbridge/cvfilter/service/CandidateRankingService.java

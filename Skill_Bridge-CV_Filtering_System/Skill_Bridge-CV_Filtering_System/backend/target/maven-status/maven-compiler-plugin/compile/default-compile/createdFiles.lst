@@ -1,0 +1,8 @@
+com/skillbridge/cvfilter/entity/Vacancy.class
+com/skillbridge/cvfilter/repository/CandidateRepository.class
+com/skillbridge/cvfilter/config/DataSeeder.class
+com/skillbridge/cvfilter/controller/ApiController.class
+com/skillbridge/cvfilter/repository/VacancyRepository.class
+com/skillbridge/cvfilter/entity/Candidate.class
+com/skillbridge/cvfilter/CvfilterApplication.class
+com/skillbridge/cvfilter/service/CandidateRankingService.class

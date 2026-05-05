@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill Bridge • Qualification Ranking</title>
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <script src="script.js" defer></script>
+</head>
+<body class="bg-[#F8FAFC] text-[#0F172A] min-h-screen">
+
+  <!-- Premium Header -->
+  <header class="navy-header text-white sticky top-0 z-50 shadow-xl">
+    <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-white text-2xl shadow-inner">📊</div>
+        <div>
+          <span class="text-3xl font-bold tracking-tighter">Skill Bridge</span>
+          <span class="ml-3 text-xs font-medium tracking-[2px] bg-white/20 px-3 py-1 rounded-3xl">QUALIFICATION MATCHING</span>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-8 text-sm font-medium">
+        <a href="#" class="hover:text-white/80 transition">Vacancies</a>
+        <a href="#" class="text-white border-b-2 border-white pb-1">Candidate Ranking</a>
+        
+        
+        <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-2 rounded-3xl">
+          <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-[#1E40AF]">👤</div>
+          <div class="text-xs">
+            <p class="font-semibold">Alex Rivera</p>
+            <p class="text-white/70">HR Director</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-8 py-10 grid grid-cols-12 gap-8">
+    
+    <!-- LEFT: Vacancies -->
+    <div class="col-span-12 lg:col-span-5 space-y-8">
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+        <div class="px-8 py-6 border-b flex items-center justify-between bg-slate-50">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-briefcase text-[#1E40AF]"></i>
+            <h2 class="font-semibold text-2xl tracking-tight">Active Vacancies</h2>
+          </div>
+          <span class="px-4 py-1 text-xs font-semibold bg-emerald-100 text-emerald-700 rounded-3xl">3 OPEN</span>
+        </div>
+        
+        <div id="vacancy-list" class="p-6 space-y-4"></div>
+        <div id="ranking-section" class="px-6 pb-6"></div>
+      </div>
+
+      <div id="vacancy-requirements" class="hidden bg-white rounded-3xl border border-slate-200 shadow-xl p-8">
+        <h3 class="font-semibold flex items-center gap-3 text-lg mb-6">
+          <i class="fa-solid fa-list-check text-emerald-600"></i>
+          Job Requirements
+        </h3>
+        <div id="req-skills" class="flex flex-wrap gap-3"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Dashboard -->
+    <div id="ranking-dashboard" class="col-span-12 lg:col-span-7">
+      <div id="stats-section" class="grid grid-cols-3 gap-4 mb-8"></div>
+
+      <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center gap-4">
+          <h1 class="text-4xl font-bold tracking-tighter">Candidate Ranking</h1>
+          <span id="selected-vacancy-name" class="text-emerald-600 font-medium"></span>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <input id="search-input" onkeyup="filterTable()" placeholder="Search candidates..." 
+                   class="w-72 bg-white border border-slate-300 focus:border-[#1E40AF] rounded-3xl px-6 py-3 text-sm focus:outline-none transition">
+            <i class="fa-solid fa-magnifying-glass absolute right-6 top-3.5 text-slate-400"></i>
+          </div>
+          <select id="sort-select" onchange="sortTable()" 
+                  class="bg-white border border-slate-300 rounded-3xl px-6 py-3 text-sm focus:outline-none cursor-pointer">
+            <option value="score">Sort by Match Score</option>
+            <option value="name">Sort by Name</option>
+            <option value="exp">Sort by Experience</option>
+          </select>
+          <button id="fullscreen-btn" onclick="toggleFullscreen()" class="ml-4 bg-white border border-slate-300 rounded-3xl px-6 py-3 text-sm hover:bg-slate-50 transition">
+            <i class="fa-solid fa-expand"></i> Fullscreen
+          </button>
+        </div>
+      </div>
+
+      <div id="top-three-section" class="mb-10"></div>
+
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden">
+        <div class="px-8 py-6 bg-slate-50 border-b flex items-center justify-between">
+          <div class="flex items-center gap-3 font-semibold">
+            <i class="fa-solid fa-ranking-star text-amber-500"></i>
+            Full Qualification Ranking
+          </div>
+        </div>
+        
+        <div id="ranking-table-section"></div>
+        
+        <div id="empty-state" class="py-32 flex flex-col items-center">
+          <div class="text-7xl mb-6 opacity-10">📋</div>
+          <h3 class="font-semibold text-2xl">No ranking yet</h3>
+          <p class="text-slate-500 mt-3 max-w-xs text-center">Select a vacancy to see candidate rankings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[999]">
+    <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl max-w-lg w-full mx-4 overflow-hidden shadow-2xl">
+      <div id="modal-content" class="p-10"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="analysis-status" class="hidden fixed bottom-8 right-8 bg-white shadow-2xl border border-emerald-200 rounded-3xl px-8 py-5 flex items-center gap-5 toast">
+    <div class="w-6 h-6 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+    <div>
+      <p class="font-semibold">Processing qualification match...</p>
+      <p class="text-xs text-slate-500">Comparing skills • ~2 sec per candidate</p>
+    </div>
+  </div>
+</body>
+</html>
